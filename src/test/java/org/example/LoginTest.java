@@ -1,5 +1,6 @@
 package org.example;
 
+import io.qameta.allure.TmsLink;
 import org.example.utils.PropertiesLoader;
 import org.testng.annotations.Test;
 
@@ -10,12 +11,17 @@ import static org.testng.Assert.assertTrue;
 
 public class LoginTest extends BaseTest {
 
+    @TmsLink("L2-23")
     @Test(groups = "standard user tests")
     public void userShouldLoginWithValidCredentials() {
+        //String password = System.getProperty("passwordProp");
         loginSteps.loginAsStandardUser();
+        //loginSteps.login("standard_user", password );
+        //System.out.println(password);
         assertTrue(productsPage.getTitle().isDisplayed(), "User was not logged in");
     }
 
+    @TmsLink("L2-24")
     @Test(groups = "standard user tests")
     public void passwordShouldBeRequiredForLogin() {
         loginSteps.login("standard_user", "");
