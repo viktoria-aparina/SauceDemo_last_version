@@ -1,0 +1,7 @@
+# Default ignored files
+.idea/
+.allure/
+*.iml
+*.iws
+# Maven
+/target/

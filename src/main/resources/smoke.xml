@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Smoke Tests" thread-count="3" parallel="classes">
+    <listeners>
+        <listener class-name="org.example.utils.TestListener"/>
+    </listeners>
+    <test name="Login Tests">
+        <groups>
+            <run>
+                <include name="standard user tests"/>
+            </run>
+        </groups>
+    </test>
+    <test name="Product Tests">
+        <classes>
+            <class name="org.example.ProductsTest"/>
+            <class name="org.example.CartTest"/>
+        </classes>
+    </test>
+    <test name="Checkout Tests">
+        <classes>
+            <class name="org.example.CheckoutTest"/>
+        </classes>
+    </test>
+</suite>
+
