@@ -116,5 +116,4 @@ public class ProductsTest extends BaseTest {
         productsPage.addToCart(productName);
         Assert.assertEquals(productsPage.findRemoveButtonOnProductPage(productName), expectedButton, "The product wasn't add to cart");
     }
-
 }
