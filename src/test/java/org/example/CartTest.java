@@ -1,14 +1,10 @@
 package org.example;
 
-import io.qameta.allure.Issue;
-import io.qameta.allure.TmsLink;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;

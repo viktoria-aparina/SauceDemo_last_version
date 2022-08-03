@@ -7,8 +7,10 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
-public class BasePage {
+public abstract class BasePage {
 
     String baseUrl;
     WebDriver driver;
@@ -19,6 +21,10 @@ public class BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         this.baseUrl = PropertiesLoader.loadProperties().getProperty("login.url");
     }
+
+    public abstract boolean isPageOpened();
+
+    public abstract BasePage open();
 
     public void waitForPageLoaded() {
         new ExpectedCondition<Boolean>() {

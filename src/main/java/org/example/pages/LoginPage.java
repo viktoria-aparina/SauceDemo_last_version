@@ -1,6 +1,7 @@
 package org.example.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,13 +29,24 @@ public class LoginPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public By getLoginButtonLocator() {
-        return By.id(LOGIN_BUTTON_ID);
+    @Override
+    public boolean isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(getLoginButtonLocator()));
+            return true;
+        } catch (TimeoutException exception) {
+            return false;
+        }
     }
 
-    public void open() {
+    @Override
+    public LoginPage open() {
         driver.get(baseUrl);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(getLoginButtonLocator()));
+        return this;
+    }
+
+    public By getLoginButtonLocator() {
+        return By.id(LOGIN_BUTTON_ID);
     }
 
     public void fillInUserName(String userName) {

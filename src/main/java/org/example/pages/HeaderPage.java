@@ -1,6 +1,7 @@
 package org.example.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -26,6 +27,22 @@ public class HeaderPage extends BasePage {
     public HeaderPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);
+    }
+
+    @Override
+    public boolean isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(BURGER_MENU_LOCATOR)));
+            return true;
+        } catch (TimeoutException exception) {
+            return false;
+        }
+    }
+
+    @Override
+    public HeaderPage open() {
+        driver.get(baseUrl + "inventory.html");
+        return this;
     }
 
     public void openCart() {

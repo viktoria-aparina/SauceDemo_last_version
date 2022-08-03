@@ -1,10 +1,12 @@
 package org.example.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 
 import java.util.Arrays;
@@ -27,8 +29,20 @@ public class ProductsPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void open() {
+    @Override
+    public boolean isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".title")));
+            return true;
+        } catch (TimeoutException exception) {
+            return false;
+        }
+    }
+
+    @Override
+    public ProductsPage open() {
         driver.get(baseUrl + "inventory.html");
+        return this;
     }
 
     public By getTitleLocator() {
