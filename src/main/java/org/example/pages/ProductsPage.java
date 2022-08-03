@@ -67,22 +67,22 @@ public class ProductsPage extends BasePage {
         return title;
     }
 
-    public void chooseAToZSort() {
-        sort.click();
-        WebElement AToZSortElement = driver.findElement(By.xpath("//option[contains(text(),'Name (A to Z)')]"));
-        AToZSortElement.click();
-    }
-
-    public List<WebElement> getAllProducts() {
-        return allProducts;
-    }
-
-    public List <WebElement> getSortedList() {
-        List<WebElement> sortedList = allProducts.stream().sorted().toList();
-        return sortedList;
-    }
-
-    @FindBy(xpath = "//div[@class='inventory_item_name']")
-    private List<WebElement> allProducts;
+//    public void chooseAToZSort() {
+//        sort.click();
+//        WebElement AToZSortElement = driver.findElement(By.xpath("//option[contains(text(),'Name (A to Z)')]"));
+//        AToZSortElement.click();
+//    }
+//
+//    public List<WebElement> getAllProducts() {
+//        return allProducts;
+//    }
+//
+//    public List <WebElement> getSortedList() {
+//        List<WebElement> sortedList = allProducts.stream().sorted().toList();
+//        return sortedList;
+//    }
+//
+//    @FindBy(xpath = "//div[@class='inventory_item_name']")
+//    private List<WebElement> allProducts;
 
 }

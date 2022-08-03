@@ -11,6 +11,7 @@ import static org.testng.Assert.assertTrue;
 
 public class CartTest extends BaseTest {
 
+    @Issue("SHRL-18")
     @Test
     public void continueShoppingShouldReturnUserOnProductsPage() {
         loginSteps.loginAsDefaultUser();
@@ -19,6 +20,7 @@ public class CartTest extends BaseTest {
         assertTrue(productsPage.getTitle().isDisplayed(), "The continue shopping button does not redirect to the product page");
     }
 
+    @Issue("SHRL-14")
     @Test
     public void checkoutShouldOpenCheckoutPage() {
         loginSteps.loginAsDefaultUser();
@@ -27,6 +29,7 @@ public class CartTest extends BaseTest {
         assertEquals(checkoutPage.getTitle().getText(), "CHECKOUT: YOUR INFORMATION", "The checkout button does not open checkout page");
     }
 
+    @Issue("SHRL-15")
     @Test
     public void countOfProductsIsChangeable() {
         loginSteps.loginAndGoToCartWithPurchasesAsDefaultUser();
@@ -34,6 +37,7 @@ public class CartTest extends BaseTest {
         Assert.assertEquals(cartPage.getCountOfProducts(), "3", "Count of products wasn't change in the cart");
     }
 
+    @Issue("SHRL-16")
     @Test
     public void removeButtonIsWorking() {
         loginSteps.loginAndGoToCartWithPurchasesAsDefaultUser();

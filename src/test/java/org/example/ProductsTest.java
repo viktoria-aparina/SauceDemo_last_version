@@ -1,5 +1,7 @@
 package org.example;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.TmsLink;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -19,7 +21,9 @@ public class ProductsTest extends BaseTest {
     public static final String SAUCE_LABS_ONESIE = "Sauce Labs Onesie";
     public static final String TEST_ALL_THINGS = "Test.allTheThings() T-Shirt (Red)";
 
+    @TmsLink("L2-54")
     @Test(groups = "standard user tests")
+    @Description("Checking the addition products to the cart as default user")
     public void productShouldBeAddedToCart() {
         loginSteps.loginAsDefaultUser();
         productsPage.addToCart(SAUCE_LABS_BACKPACK);
@@ -33,6 +37,7 @@ public class ProductsTest extends BaseTest {
     }
 
     @Test(groups = "standard user tests")
+    @Description("Checking the removal products from the cart as default user")
     public void productShouldBeRemovedFromCart() {
         loginSteps.loginAsDefaultUser();
         productsPage.addToCart(SAUCE_LABS_BACKPACK, SAUCE_LABS_BOLT_T_SHIRT);
@@ -64,6 +69,7 @@ public class ProductsTest extends BaseTest {
         }
 
         @Test(dataProvider = "Data Provider for problem_user", groups = "problem user tests")
+        @Description("Checking the addition products to the cart as problem user")
         public void productShouldBeAddedToCartForProblemUser(String productName, String expectedButton) {
             loginSteps.loginAsProblemUser();
             productsPage.addToCart(productName);
@@ -71,6 +77,7 @@ public class ProductsTest extends BaseTest {
         }
 
     @Test(groups = "problem user tests")
+    @Description("Checking the removal products from the cart as problem user")
     public void productShouldBeRemovedFromCartForProblemUser() {
         loginSteps.loginAsProblemUser();
         productsPage.addToCart(SAUCE_LABS_BACKPACK, SAUCE_LABS_BIKE_LIGHT);
@@ -102,11 +109,11 @@ public class ProductsTest extends BaseTest {
     }
 
     @Test(dataProvider = "Data Provider for performance_glitch_user", groups = "performance glitch user tests")
+    @Description("Checking the addition products to the cart as performance glitch user")
     public void productShouldBeAddedToCartForPerformanceGlitchUser(String productName, String expectedButton) {
         loginSteps.loginAsPerformanceGlitchUser();
         wait.until(ExpectedConditions.visibilityOfElementLocated(productsPage.getTitleLocator()));
         productsPage.addToCart(productName);
         Assert.assertEquals(productsPage.findRemoveButtonOnProductPage(productName), expectedButton, "The product wasn't add to cart");
     }
-
 }
