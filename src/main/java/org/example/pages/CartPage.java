@@ -1,13 +1,17 @@
 package org.example.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
+@Log4j2
 public class CartPage extends BasePage {
 
     @FindBy(css = ".title")
@@ -33,8 +37,21 @@ public class CartPage extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    public void open() {
+    @Override
+    public boolean isPageOpened() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".title")));
+            return true;
+        } catch (TimeoutException exception) {
+            log.error("The page {} was not opened, because of error {}", "Cart Page", exception.getCause());
+            return false;
+        }
+    }
+
+    @Override
+    public CartPage open() {
         driver.get(baseUrl + "cart.html");
+        return this;
     }
 
     public List<WebElement> getAllProductsInCart() {
