@@ -30,7 +30,7 @@ public class CartPage extends BasePage {
     private final String productInCart = "//div[text()='%s']//ancestor::div[@class='cart_item']";
     private final String removeButton = "//div[text()='%s']//ancestor::div[@class='cart_item']//button[text()='Remove']";
     private final String product = "//div[text()='%s']//ancestor::div[@class='cart_item']";
-    private final String countOfProductsForm = "//div[text()='']/ancestor::div[@class='cart_item']/div[@class='cart_quantity']";
+    private final String countOfProductsForm = "//div[text()='1']/ancestor::div[@class='cart_item']/div[@class='cart_quantity']";
 
     public CartPage(WebDriver driver) {
         super(driver);
@@ -86,7 +86,7 @@ public class CartPage extends BasePage {
     public void changeCountOfProductsInCart(String productName, String countProducts) {
         By fullLocatorForCountOfProducts = By.xpath(String.format(countOfProductsForm, productName));
         driver.findElement(fullLocatorForCountOfProducts).clear();
-        log.info("The element {} was clear successfully", fullLocatorForCountOfProducts);
+        log.info("The element {} was cleared successfully", fullLocatorForCountOfProducts);
         driver.findElement(fullLocatorForCountOfProducts).sendKeys(countProducts);
         log.info("The count of products was successfully changed");
     }
