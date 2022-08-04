@@ -1,15 +1,17 @@
 package org.example;
 
+import io.qameta.allure.Issue;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CartTest extends BaseTest {
+
+    static final Logger logger = LogManager.getLogger(CartTest.class);
 
     @Issue("SHRL-18")
     @Test
