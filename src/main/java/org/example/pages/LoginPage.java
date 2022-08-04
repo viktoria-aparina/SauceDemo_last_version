@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -8,6 +9,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+@Log4j2
 public class LoginPage extends BasePage {
 
     private static final String LOGIN_BUTTON_ID = "login-button";
@@ -35,6 +37,7 @@ public class LoginPage extends BasePage {
             wait.until(ExpectedConditions.visibilityOfElementLocated(getLoginButtonLocator()));
             return true;
         } catch (TimeoutException exception) {
+            log.error("The page {} was not opened, because of error {}", "Login Page", exception.getCause());
             return false;
         }
     }

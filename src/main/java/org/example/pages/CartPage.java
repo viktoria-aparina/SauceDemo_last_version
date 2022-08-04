@@ -86,6 +86,8 @@ public class CartPage extends BasePage {
     public void changeCountOfProductsInCart(String productName, String countProducts) {
         By fullLocatorForCountOfProducts = By.xpath(String.format(countOfProductsForm, productName));
         driver.findElement(fullLocatorForCountOfProducts).clear();
+        log.info("The element {} was clear successfully", fullLocatorForCountOfProducts);
         driver.findElement(fullLocatorForCountOfProducts).sendKeys(countProducts);
+        log.info("The count of products was successfully changed");
     }
 }

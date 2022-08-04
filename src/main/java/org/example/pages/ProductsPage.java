@@ -1,5 +1,6 @@
 package org.example.pages;
 
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
@@ -12,6 +13,7 @@ import org.testng.Assert;
 import java.util.Arrays;
 import java.util.List;
 
+@Log4j2
 public class ProductsPage extends BasePage {
 
     private static final By TITLE = By.cssSelector(".title");
@@ -35,6 +37,7 @@ public class ProductsPage extends BasePage {
             wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".title")));
             return true;
         } catch (TimeoutException exception) {
+            log.error("The page {} was not opened, because of error {}", "Products Page", exception.getCause());
             return false;
         }
     }
@@ -52,6 +55,7 @@ public class ProductsPage extends BasePage {
     public void addToCart(String productName) {
         By fullLocator = By.xpath(String.format(addToCartButton, productName));
         driver.findElement(fullLocator).click();
+        log.info("The product {} was added to cart", fullLocator);
     }
 
     public String findRemoveButtonOnProductPage(String productName) {
@@ -66,23 +70,4 @@ public class ProductsPage extends BasePage {
     public WebElement getTitle() {
         return title;
     }
-
-//    public void chooseAToZSort() {
-//        sort.click();
-//        WebElement AToZSortElement = driver.findElement(By.xpath("//option[contains(text(),'Name (A to Z)')]"));
-//        AToZSortElement.click();
-//    }
-//
-//    public List<WebElement> getAllProducts() {
-//        return allProducts;
-//    }
-//
-//    public List <WebElement> getSortedList() {
-//        List<WebElement> sortedList = allProducts.stream().sorted().toList();
-//        return sortedList;
-//    }
-//
-//    @FindBy(xpath = "//div[@class='inventory_item_name']")
-//    private List<WebElement> allProducts;
-
 }
