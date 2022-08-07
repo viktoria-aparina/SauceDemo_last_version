@@ -4,7 +4,6 @@
     <test name="Example group">
         <classes>
             <class name="org.example.LogoutTest"/>
-            <class name="org.example.LoginTest"/>
         </classes>
     </test>
 </suite>

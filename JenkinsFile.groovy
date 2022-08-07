@@ -15,10 +15,10 @@ pipeline {
                 git branch: "${params.BRANCH}", url: 'https://github.com/viktoria-aparina/SauceDemo_last_version.git'
 
                 // Run Maven on a Unix agent.
-                //sh "mvn clean test -DsuiteXmlFile=src/main/resources/smoke.xml"
+                //sh "mvn clean test -DsuiteXmlFile=src/main/resources/regression.xml"
 
                 // To run Maven on a Windows agent, use
-                bat "mvn clean test -DsuiteXmlFile=src/main/resources/smoke.xml"
+                bat "mvn clean test -DsuiteXmlFile=src/main/resources/regression.xml"
             }
         }
         stage('Allure') {
